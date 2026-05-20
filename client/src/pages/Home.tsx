@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Play, TrendingUp, Sparkles, ListMusic, PlusCircle } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Play, TrendingUp, Sparkles, ListMusic } from 'lucide-react';
 import { usePlayerStore } from '../store/usePlayerStore';
 import { useSearchStore } from '../store/useSearchStore';
 import { usePlaylistStore } from '../store/usePlaylistStore';
@@ -37,41 +36,7 @@ const TrackCard = ({ track, onPlay }: { track: any; onPlay: () => void }) => (
 );
 
 /* ── PlaylistCard ──────────────────────────────────────── */
-const PlaylistCard = ({ playlist }: { playlist: any }) => (
-  <Link to={`/playlist/${playlist._id}`} className="apple-card group block">
-    <div
-      className="aspect-square rounded-xl overflow-hidden mb-3 relative flex items-center justify-center"
-      style={{
-        background: playlist.tracks[0] ? 'transparent' : 'var(--surface-2)',
-        border: '1px solid var(--border)'
-      }}
-    >
-      {playlist.tracks[0] ? (
-        <img
-          src={playlist.tracks[0].thumbnail}
-          alt={playlist.name}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-        />
-      ) : (
-        <ListMusic size={36} style={{ color: 'var(--text-3)' }} />
-      )}
-      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-        <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-xl transform scale-75 group-hover:scale-100 transition-transform">
-          <Play size={16} fill="black" className="text-black ml-0.5" />
-        </div>
-      </div>
-    </div>
-    <h3
-      className="text-[13px] font-semibold truncate leading-snug"
-      style={{ color: 'var(--text-1)' }}
-    >
-      {playlist.name}
-    </h3>
-    <p className="text-[11px] font-medium truncate mt-0.5" style={{ color: 'var(--text-2)' }}>
-      {playlist.tracks?.length || 0} song{playlist.tracks?.length !== 1 ? 's' : ''}
-    </p>
-  </Link>
-);
+// PlaylistCard component was removed because playlist preview content is not currently used.
 
 /* ── SkeletonCard ──────────────────────────────────────── */
 const SkeletonCard = () => (
@@ -100,7 +65,7 @@ const Home = () => {
   const { results, query, isLoading } = useSearchStore();
   const [trending, setTrending] = useState<any[]>([]);
   const { setCurrentTrack, setQueue } = usePlayerStore();
-  const { playlists, createPlaylist } = usePlaylistStore();
+  const { createPlaylist } = usePlaylistStore();
 
   useEffect(() => {
     getTrendingMusic().then(setTrending);

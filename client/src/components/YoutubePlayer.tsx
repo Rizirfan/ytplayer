@@ -52,7 +52,11 @@ const YoutubePlayer = () => {
     // 1: PLAYING, 2: PAUSED
     if (event.data === 1) {
       setIsPlaying(true);
-      setDuration(event.target.getDuration());
+      Promise.resolve(event.target.getDuration()).then((value) => {
+        if (typeof value === 'number') {
+          setDuration(value);
+        }
+      });
 
       // Track recently played
       if (currentTrack) {
@@ -98,7 +102,6 @@ const YoutubePlayer = () => {
       autoplay: 1,
       controls: 0,
       modestbranding: 1,
-      showinfo: 0,
     },
   };
 
