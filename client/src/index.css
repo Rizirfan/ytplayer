@@ -1,7 +1,9 @@
 @import "tailwindcss";
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
+
   --primary: #FA243C;
   --primary-glow: rgba(250, 36, 60, 0.3);
   --bg: #0a0a0a;
